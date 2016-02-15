@@ -11,10 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215140454) do
+ActiveRecord::Schema.define(version: 20160215143248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "total_price"
+    t.boolean  "accepted"
+    t.integer  "kitten_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "bookings", ["kitten_id"], name: "index_bookings_on_kitten_id", using: :btree
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
+
+  create_table "kittens", force: :cascade do |t|
+    t.string   "name"
+    t.string   "race"
+    t.text     "diet"
+    t.string   "personality"
+    t.boolean  "home_delivery"
+    t.integer  "price_per_day"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "kittens", ["user_id"], name: "index_kittens_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -29,9 +57,14 @@ ActiveRecord::Schema.define(version: 20160215140454) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "name"
+    t.string   "address"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "bookings", "kittens"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "kittens", "users"
 end
