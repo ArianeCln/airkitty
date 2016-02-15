@@ -2,8 +2,9 @@ class Kitten < ActiveRecord::Base
   # RACES = ["Le Persan", "Le Maine coon", "Le Sacré de Birmanie", "Le Chartreux", "Le Norvégien", "Le Bristish shorthair", "Le Bengal", "Le Ragdol L’Exotic shorthair", "Le Siamois"]
   RACES = %w(A B C D E F G H I J)
   belongs_to :owner, class_name: :User, foreign_key: "user_id"
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
 
   validates :name, presence: true
   validates :race, inclusion: { in: RACES}
+  validates :owner, presence: true
 end
