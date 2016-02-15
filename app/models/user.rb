@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
   has_many :kittens
   has_many :bookings
 
-  validates :name, :password, :address, presence: true
-  validates :email, presence: true, uniqueness: true
+  validates :name, :address, presence: true
+  validates :email, uniqueness: true
 end
