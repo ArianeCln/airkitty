@@ -3,6 +3,7 @@ class Kitten < ActiveRecord::Base
   RACES = %w(A B C D E F G H I J)
   belongs_to :owner, class_name: :User, foreign_key: "user_id"
   has_many :bookings, dependent: :destroy
+  has_many :renters, through: :bookings
 
   validates :name, presence: true
   validates :race, inclusion: { in: RACES}
