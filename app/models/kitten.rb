@@ -5,4 +5,10 @@ class Kitten < ActiveRecord::Base
 
   validates :name, presence: true
   validates :race, inclusion: { in: RACES}
+
+
+  def self.search(search)
+    where("users.address ILIKE ?", "%#{search}%")
+  end
+
 end
