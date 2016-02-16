@@ -12,6 +12,8 @@
       <%= f.input :diet,label: "Régime", placeholder: "croquettes bio" %>
       <%= f.input :home_delivery, as: :boolean, checked_value: true, unchecked_value: false, label:"livraison à domicile"%>
       <%= f.input :price_per_day, label: "Prix par jour",placeholder: "fixez votre prix" %>
+      <%= f.input :photos, as: :attachinary %>
+      <%= f.button :submit, label: "je crée mon AirKitty"%>
      <% end %>
 
 
