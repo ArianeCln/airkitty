@@ -17,26 +17,27 @@
 }
 .banner p {
   font-size: 20px;
-  font-weight: lighter;
-  color: rgba(255, 255, 255, 0.7);
+  color: white;
   margin-bottom: 20px;
 }
 
 .search-bar {
   display: flex;
-  background-color: white;
-  padding: 5px;
-  border-radius: 3px;
+  padding: 0px;
   justify-content: space-between;
   .fields {
     flex: 1 1 auto;
-    margin-right: 15px;
+    margin: 0 -1px 0 0;
+    font-size: 14px;
   }
-}
-.search-fields {
-  padding-right: 5px;
 }
 
 .btn-search {
   background-color: #fe707b;
+  width: 200px;
+  font-size: 14px;
+}
+.btn-search:hover {
+  color: white;
+  border-color: #fd3c4b;
 }
