@@ -7,8 +7,23 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 user_names = %w(Anne Bob Camille Denis Emilie Felix Gustave Henri Irina James)
+address = [
+  "12 rue Oberkampf",
+  "15 boulevard Richard Lenoir",
+  "9 rue des Martyrs",
+  "11 rue de Tolbiac",
+  "5 rue des Boulets",
+  "3 rue Cadet",
+  "10 rue Lamartine",
+  "13 rue de l'Assomption",
+  "2 avenue des Gobelin",
+  "8 rue Tronchet",
+  "40 boulevard Malesherbes"
+]
 cities = %w(Paris Lyon Bordeau Rennes Nantes Paris Lyon Bordeau Rennes Nantes)
 password = "12345678"
+menus = %w(gastro croquette)
+personalities = ["aggressif", "gentil", "calme", "fougeux", "sauvage", "flemmard", "tendre", "respectueux", "énergique", "flegmatique"]
 kitten_name = %w(Lechat Thecat Daskat Tichat Kitty)
 races = %w(A B C D E)
 
@@ -19,7 +34,7 @@ races = %w(A B C D E)
 end
 
 (0..4).each do |i|
-  kitten = Kitten.new(name: kitten_name[i], race: races[i], owner: User.find(i+1))
+  kitten = Kitten.new(name: kitten_name[i], race: races[i], owner: User.find(i+1), diet: menus.sample, personality: personalities.sample, home_delivery: [true, false].sample)
   kitten.save
 end
 
