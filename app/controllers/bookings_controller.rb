@@ -5,24 +5,30 @@ class BookingsController < ApplicationController
 
 
   def show
-
+    @booking = Booking.find(params[:id])
   end
 
   def new
-    @kitten = Kitten.new
+    @booking = Booking.new
   end
 
   def create
     @booking = Booking.new(booking_params)
-    @kitten.booking = @booking
+    @booking.renter = current_user
+    @booking.kitten = @kitten
+    @booking.accepted = false
     if @booking.save
-      redirect_to booking_path(@kitten)
+      redirect_to kitten_booking_path(@kitten, @booking)
     else
-      render "booking/show"
+      render :new
     end
   end
 
   def edit
+    @booking = Booking.find(params[:id])
+    @booking.accepted = true
+    @booking.save
+    redirect_to kitten_booking_path(@kitten, @booking)
   end
 
   def update
@@ -37,14 +43,10 @@ class BookingsController < ApplicationController
   private
 
   def set_kitten
-    @kitten = Kitten.find(params[:id)
+    @kitten = Kitten.find(params[:kitten_id])
   end
 
   def booking_params
-    params.require(:kitten).permit (:start_date, :end_date, :total_price, :accepted, :kitten_id, :user_id)
+    params.require(:booking).permit(:start_date, :end_date, :total_price, :accepted)
   end
-
-
-
-
 end

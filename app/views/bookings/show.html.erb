@@ -1,0 +1,18 @@
+<h1 class="text-center">Booking n° <%= @booking.id %> for kitten : <%= @kitten.name %></h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <p>renter : <%= @booking.renter.name %></p>
+      <p>starting at : <%= @booking.start_date.to_date %></p>
+      <p>ending at : <%= @booking.end_date.to_date %></p>
+      <p>number of days : <%= @booking.number_of_days %></p>
+      <p>total price : <%= (@booking.number_of_days * @kitten.price_per_day) unless @kitten.price_per_day.nil? %></p>
+      <% if !(@booking.accepted == true) %>
+        <p>status : to be accepted</p>
+      <% else %>
+        <p>status : accepted</p>
+      <% end %>
+    </div>
+  </div>
+</div>
