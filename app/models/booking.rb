@@ -5,4 +5,8 @@ class Booking < ActiveRecord::Base
 
   validates :start_date, :end_date, :kitten_id, presence: true
   validates :renter, presence: true
+
+  def number_of_days
+    (end_date.to_date - start_date.to_date).to_i
+  end
 end
