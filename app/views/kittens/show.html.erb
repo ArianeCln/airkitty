@@ -1,0 +1,19 @@
+
+<div class="container">
+  <div class = "row">
+    <div class = "col-xs-12 col-sm-3">
+
+
+      <%= @kitten.name %>
+      <%= @kitten.personality %>
+      <%= @kitten.diet %>
+      <%= @kitten.home_delivery %>
+      <%= @kitten.price_per_day %>
+      <%= @kitten.owner.name %>
+
+      <%= link_to "back", kittens_path%>
+
+
+    </div>
+  </div>
+</div>

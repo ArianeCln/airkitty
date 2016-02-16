@@ -1,0 +1,24 @@
+
+<div class="container">
+  <div class = "row">
+    <div class = "col-xs-12 col-sm-4 col-sm-offset-4">
+
+
+    <%= simple_form_for @kitten do |f|%>
+
+      <%= f.input :name, label: "Nom", placeholder: "Kitty" %>
+      <%= f.input :race, label: "Race", collection: Kitten::RACES, prompt: "choisissez"%>
+      <%= f.input :personality, label: "Personalité", collection: Kitten::PERSONA, prompt: "choisissez" %>
+      <%= f.input :diet,label: "Régime", placeholder: "croquettes bio" %>
+      <%= f.input :home_delivery, as: :boolean, checked_value: true, unchecked_value: false, label:"livraison à domicile"%>
+      <%= f.input :price_per_day, label: "Prix par jour",placeholder: "fixez votre prix" %>
+     <% end %>
+
+
+
+      <%= link_to "Retour", kittens_path%>
+
+
+    </div>
+  </div>
+</div>
