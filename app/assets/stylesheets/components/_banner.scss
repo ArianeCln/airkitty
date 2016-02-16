@@ -1,5 +1,6 @@
 /* Banner design */
 .banner {
+  background-image: url('background.png');
   color: white;
   text-align: center;
   height: 100vh;
@@ -7,6 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%);
 }
 .banner h1 {
   font-size: 50px;
@@ -18,4 +20,23 @@
   font-weight: lighter;
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 20px;
+}
+
+.search-bar {
+  display: flex;
+  background-color: white;
+  padding: 5px;
+  border-radius: 3px;
+  justify-content: space-between;
+  .fields {
+    flex: 1 1 auto;
+    margin-right: 15px;
+  }
+}
+.search-fields {
+  padding-right: 5px;
+}
+
+.btn-search {
+  background-color: #fe707b;
 }

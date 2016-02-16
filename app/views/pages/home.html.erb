@@ -1,23 +1,48 @@
-<div class="banner" style="background: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('images/background.jpg');">
+<div class="banner">
   <div class="banner-content">
-    <h1>WELCOME HOME</h1>
-    <p>Rent unique places to stay from local hosts in 190+ countries.</p>
+    <h1>WELCOME TO THE FLUFFIEST HOME</h1>
+    <p>Rent unique kittens from local hosts in your city</p>
 
-    <form action="" class="form-inline">
+    <form action="" class="form-inline search-bar">
 
-      <div class="form-group">
 
-        <input type="text" class="form-control input-lg" placeholder="Check-in">
-        <input type="text" class="form-control input-lg" placeholder="Check-out">
-        <select class="form-control input-lg">
-          <option value="1">1 guest</option>
-          <option value="2">2 guests</option>
-          <option value="3">3 guests</option>
-        </select>
-      </div>
+      <input type="text" class="form-control fields" placeholder="Search for a city">
+      <input type="text" class="form-control fields" placeholder="Start Date">
+      <input type="text" class="form-control fields" placeholder="End Date">
 
-      <input type="submit" value="Search"  class="btn btn-primary btn-lg">
+
+      <input type="submit" value="Search"  class="btn btn-search ">
     </form>
 
+  </div>
+</div>
+
+<div class="wrapper text-center padded">
+  <div class="container">
+    <div class="row">
+
+      <h3>Nous utilisateurs témoignent: </h3>
+      <div class="col-xs-12 col-md-4">
+        <div class="testimony">
+          <%= image_tag 'http://placehold.it/50x50', class: "avatar-large" %>
+          <p><em>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius molestiae numquam qui a nemo incidunt explicabo libero soluta inventore magni fugiat accusamus, est quibusdam perferendis sequi, tempora iusto at voluptate!"</em></p>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-4">
+        <div class="testimony">
+          <%= image_tag 'http://placehold.it/50x50', class: "avatar-large" %>
+          <p><em>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius molestiae numquam qui a nemo incidunt explicabo libero soluta inventore magni fugiat accusamus, est quibusdam perferendis sequi, tempora iusto at voluptate!"</em></p>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-4">
+        <div class="testimony">
+          <%= image_tag 'http://placehold.it/50x50', class: "avatar-large" %>
+          <p><em>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius molestiae numquam qui a nemo incidunt explicabo libero soluta inventore magni fugiat accusamus, est quibusdam perferendis sequi, tempora iusto at voluptate!"</em></p>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
