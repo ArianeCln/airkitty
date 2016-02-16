@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
 
   validates :name, :address, presence: true
   # validates :email, uniqueness: true
+
 end
