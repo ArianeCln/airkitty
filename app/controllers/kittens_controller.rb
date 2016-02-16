@@ -9,7 +9,6 @@ class KittensController < ApplicationController
     else
       @kittens = Kitten.order('created_at DESC')
     end
-    raise
   end
 
   def show

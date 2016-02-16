@@ -8,6 +8,7 @@ class Kitten < ActiveRecord::Base
   validates :name, presence: true
   validates :race, inclusion: { in: RACES}
 
+  # make sure there is no conflict between those two lines
   # validates :owner, presence: true
 
   def self.search(search)

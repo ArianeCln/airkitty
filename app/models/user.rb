@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
   has_many :bookings
   has_many :owners, through: :bookings
 
-  validates :name, :address, presence: true
   # validates :email, uniqueness: true
 
 end
