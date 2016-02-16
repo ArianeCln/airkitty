@@ -1,0 +1,61 @@
+
+<!-- kitty  -->
+
+<div class="container">
+  <div class = "row">
+    <div class = "col-xs-12 col-sm-4 col-sm-offset-4">
+      <div class="thumbnail">
+        <h1 class= "page-header text-center"><%= @kitten.name %></h1>
+        <% @kitten.photos.each do |photo| %>
+        <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
+        <% end %>
+        <div class="caption">
+          <ul>
+           <li><p>his personality:  <%=  @kitten.personality %></p></li>
+           <li><p>his diet: <%= @kitten.diet %></p></li>
+           <li><p>home delivery option: <%= @kitten.home_delivery %></p></li>
+           <li><p>price per day:<%= @kitten.price_per_day %></p></li>
+           <li><p>location:<%= @kitten.price_per_day %></p></li>
+         </ul>
+       </div>
+
+
+
+     <!--   social -->
+
+       <div class="share-links text-center">
+        <a href="#" class="share-link bg-facebook">
+          <i class="fa fa-facebook"></i>
+        </a>
+        <a href="#" class="share-link bg-twitter">
+          <i class="fa fa-twitter"></i>
+        </a>
+        <a href="#" class="share-link bg-email">
+          <i class="fa fa-envelope-o"></i>
+        </a>
+        <a href="#" class="share-link bg-text">
+          <i class="fa fa-mobile"></i>
+        </a>
+<br>
+
+
+    <!-- buttons  -->
+
+       <%= link_to "book this kitty!", new_kitten_booking_path(@kitten), class:"btn btn-primary" %>
+       <%= link_to "delete this kitty!", kitten_path(@kitten), method: :delete, class:"btn btn-primary" %>
+
+
+      </div>
+    </div>
+
+      <!--   redirect -->
+
+         <%= link_to "I prefer another Kitty", kittens_path, class:"btn btn-warning" %>
+
+
+
+  </div>
+</div>
+</div>
+
+

@@ -27,3 +27,4 @@ end
   booking = Booking.new(kitten: Kitten.find(i + 1), renter: User.find(i + 5), start_date: 20160101, end_date: 20160201)
   booking.save
 end
+

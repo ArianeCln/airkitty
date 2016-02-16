@@ -19,7 +19,13 @@ class KittensController < ApplicationController
   end
 
   def create
-    @kitten = Kitten.create(kitten_params)
+    @kitten = Kitten.new(kitten_params)
+    @kitten.owner = current_user
+    if @kitten.save
+      redirect_to kitten_path(@kitten)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -41,7 +47,7 @@ class KittensController < ApplicationController
   end
 
   def kitten_params
-    params.require(:kitten).permit(:name, :race, :diet, :personality, :home_delivery, :price_per_day, :user_id)
+    params.require(:kitten).permit(:name, :race, :diet, :personality, :home_delivery, :price_per_day, :user_id, photos:[])
   end
 
 end
