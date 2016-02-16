@@ -1,0 +1,43 @@
+/* Banner design */
+.banner {
+  background-image: url('background.png');
+  color: white;
+  text-align: center;
+  height: 100vh;
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%);
+}
+.banner h1 {
+  font-size: 50px;
+  font-weight: bold;
+  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+}
+.banner p {
+  font-size: 20px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  display: flex;
+  padding: 0px;
+  justify-content: space-between;
+  .fields {
+    flex: 1 1 auto;
+    margin: 0 -1px 0 0;
+    font-size: 14px;
+  }
+}
+
+.btn-search {
+  background-color: #fe707b;
+  width: 200px;
+  font-size: 14px;
+}
+.btn-search:hover {
+  color: white;
+  border-color: #fd3c4b;
+}
