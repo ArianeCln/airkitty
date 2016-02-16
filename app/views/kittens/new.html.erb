@@ -6,19 +6,19 @@
 
     <%= simple_form_for @kitten do |f|%>
 
-      <%= f.input :name, label: "Nom", placeholder: "Kitty" %>
-      <%= f.input :race, label: "Race", collection: Kitten::RACES, prompt: "choisissez"%>
-      <%= f.input :personality, label: "Personalité", collection: Kitten::PERSONA, prompt: "choisissez" %>
-      <%= f.input :diet,label: "Régime", placeholder: "croquettes bio" %>
-      <%= f.input :home_delivery, as: :boolean, checked_value: true, unchecked_value: false, label:"livraison à domicile"%>
-      <%= f.input :price_per_day, label: "Prix par jour",placeholder: "fixez votre prix" %>
+      <%= f.input :name, placeholder: "Kitty" %>
+      <%= f.input :race, collection: Kitten::RACES, prompt: "choose"%>
+      <%= f.input :personality, collection: Kitten::PERSONA, prompt: "choose" %>
+      <%= f.input :diet, placeholder: "croquettes bio" %>
+      <%= f.input :home_delivery, as: :boolean, checked_value: true, unchecked_value: false%>
+      <%= f.input :price_per_day, placeholder: "how much is kitty?" %>
       <%= f.input :photos, as: :attachinary %>
-      <%= f.button :submit, label: "je crée mon AirKitty"%>
+      <br>
+      <div class= "text-center">
+      <%= f.button :submit, "Put my kitty on Air", class:"btn btn-primary"%></div>
      <% end %>
 
 
-
-      <%= link_to "Retour", kittens_path%>
 
 
     </div>
