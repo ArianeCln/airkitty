@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.3.0'
 
+gem 'cloudinary'
 gem 'rails', '4.2.5.1'
 gem 'puma'
 gem 'pg'
@@ -20,7 +21,6 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'bootstrap-datepicker-rails'
-gem 'cloudinary'
 gem "jquery-fileupload-rails"
 gem "attachinary"
 gem "coffee-rails"
