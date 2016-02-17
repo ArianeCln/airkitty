@@ -48,7 +48,7 @@ class KittensController < ApplicationController
   end
 
   def kitten_params
-    params.require(:kitten).permit(:name, :race, :diet, :personality, :home_delivery, :price_per_day, :user_id, photos:[])
+    params.require(:kitten).permit(:name, :race, :address, :diet, :personality, :home_delivery, :price_per_day, :user_id, photos:[])
   end
 
 end
