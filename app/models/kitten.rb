@@ -17,6 +17,6 @@ class Kitten < ActiveRecord::Base
   after_validation :geocode, if: :address_changed?
 
   def self.search(search)
-    where("users.address ILIKE ?", "%#{search}%")
+    where("kittens.address ILIKE ?", "%#{search}%")
   end
 end
