@@ -1,18 +1,34 @@
-<h1 class="text-center">Booking n° <%= @booking.id %> for kitten : <%= @kitten.name %></h1>
-
-<div class="container">
+<div class="container text-center">
   <div class="row">
-    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-      <p>renter : <%= @booking.renter.name %></p>
-      <p>starting at : <%= @booking.start_date.to_date %></p>
-      <p>ending at : <%= @booking.end_date.to_date %></p>
-      <p>number of days : <%= @booking.number_of_days %></p>
-      <p>total price : <%= (@booking.number_of_days * @kitten.price_per_day) unless @kitten.price_per_day.nil? %></p>
-      <% if !(@booking.accepted == true) %>
-        <p>status : to be accepted</p>
-      <% else %>
-        <p>status : accepted</p>
-      <% end %>
+    <div class="col-xs-12">
+      <h2 class="text-center">Your booking request has been sent to <%= @kitten.name %>'s owner</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-3 col-sm-offset-3">
+      <div>
+        <% @kitten.photos.each do |photo| %>
+          <%= cl_image_tag photo.path, width: 150, height: 150, crop: :fill, :class => "booking-image-bordered" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-3">
+      <div class="booking-infos">
+        <p>From : <%= @booking.start_date.to_date %></p>
+        <p>To : <%= @booking.end_date.to_date %></p>
+        <p>Number of days : <%= @booking.number_of_days %></p>
+        <p>Total price : <%= (@booking.number_of_days * @kitten.price_per_day) unless @kitten.price_per_day.nil? %></p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h3 class="text-center">You will be informed as soon as the booking request is accepted</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= link_to "Go back to #{@kitten.name}'s profile", kitten_path(@kitten), :class => "btn btn-success" %>
     </div>
   </div>
 </div>
