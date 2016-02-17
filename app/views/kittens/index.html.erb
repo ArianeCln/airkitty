@@ -1,28 +1,18 @@
 
-<%= form_tag(kittens_path, :method => "get", id: "search-form") do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search Kittens" %>
-  <%= submit_tag "Search" %>
-<% end %>
 
 
-<h1>Here are the kitties nearby</h1>
+<h3 class= "index-header text-center"><i class="fa fa-star text-center"></i> Here are the kitties nearby <i class="fa fa-star"></i></h3>
 
-
-<% @kittens.each do |kitten| %>
-
-
-<div class="container">
-  <div class = "row">
-    <div class = "col-xs-12 col-sm-3">
-
-      <p><%= kitten.name %></p>
-     <p><%= kitten.personality %>
-      <%= kitten.diet %>
-      <%= kitten.home_delivery %>
-      <%= kitten.price_per_day %></p>
-
+<div class="container text-center kittens">
+  <div class="row">
+    <% @kittens.each do |kitten| %>
+    <div class="col-xs-12 col-sm-4 margin-bottom">
+      <div class="card", style="background-image: url(<%= cl_image_path kitten.photos.first&.path %>)">
+        <p class="card-description"><%=kitten.name%></p>
+      </div>
     </div>
+    <% end %>
   </div>
 </div>
 
-<% end %>
+
