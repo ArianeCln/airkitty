@@ -5,7 +5,7 @@ class KittensController < ApplicationController
   def index
     @kittens = Kitten.all
     if params[:search]
-      @kittens = Kitten.joins(:owner).search(params[:search]).order("created_at DESC")
+      @kittens = Kitten.search(params[:search]).order("created_at DESC")
     else
       @kittens = Kitten.order('created_at DESC')
     end
