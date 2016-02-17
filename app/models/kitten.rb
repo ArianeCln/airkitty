@@ -13,6 +13,8 @@ class Kitten < ActiveRecord::Base
 
   # make sure there is no conflict between those two lines
   # validates :owner, presence: true
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 
   def self.search(search)
     where("users.address ILIKE ?", "%#{search}%")

@@ -10,6 +10,7 @@
       <%= f.input :race, collection: Kitten::RACES, prompt: "choose"%>
       <%= f.input :personality, collection: Kitten::PERSONA, prompt: "choose" %>
       <%= f.input :diet, placeholder: "croquettes bio" %>
+      <%= f.input :address, placeholder: "16 Villa Gaudelet 75011" %>
       <%= f.input :home_delivery, as: :boolean, checked_value: true, unchecked_value: false%>
       <%= f.input :price_per_day, placeholder: "how much is kitty?" %>
       <%= f.input :photos, as: :attachinary %>
