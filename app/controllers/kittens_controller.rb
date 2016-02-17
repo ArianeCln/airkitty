@@ -12,7 +12,7 @@ class KittensController < ApplicationController
   end
 
   def show
-    @kitten_coordinates = { lat: @kitten.latitude, lng: @kitten.longitude }
+    # @kitten_coordinates = { lat: @kitten.lat, lng: @kitten.lng }
   end
 
   def new

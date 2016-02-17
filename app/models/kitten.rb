@@ -1,7 +1,7 @@
 class Kitten < ActiveRecord::Base
   # RACES = ["Le Persan", "Le Maine coon", "Le Sacré de Birmanie", "Le Chartreux", "Le Norvégien", "Le Bristish shorthair", "Le Bengal", "Le Ragdol L’Exotic shorthair", "Le Siamois"]
-  RACES = %w(A B C D E F G H I J)
-  PERSONA = ["aggressif", "gentil", "calme", "fougeux", "sauvage", "flemmard", "tendre", "respectueux", "énergique", "flegmatique"]
+  RACES = %w(Persan Bengal Abyssin Ragdol Burmese Balinese Chartreux Cymric Javanese Korat)
+  PERSONA = ["aggressive", "nice", "calm", "frisky", "wild", "lazy", "sweet", "polite", "energetic", "phlegmatic"]
   belongs_to :owner, class_name: :User, foreign_key: "user_id"
   has_many :bookings, dependent: :destroy
   has_many :renters, through: :bookings
