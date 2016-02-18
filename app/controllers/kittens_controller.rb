@@ -10,11 +10,16 @@ class KittensController < ApplicationController
     else
       @kittens = Kitten.order('created_at DESC')
     end
+    @markers = Gmaps4rails.build_markers(@kittens) do |kitten, marker|
+      marker.lat kitten.latitude
+      marker.lng kitten.longitude
+    end
   end
 
   def show
     @start_date = params[:start_date]
     @end_date = params[:end_date]
+    @kitten_coordinates = { lat: @kitten.latitude, lng: @kitten.longitude }
   end
 
   def new
@@ -42,6 +47,7 @@ class KittensController < ApplicationController
   def destroy
     @kitten.destroy
   end
+
 
   private
 

@@ -5,15 +5,43 @@
 
 <div class="container text-center kittens">
   <div class="row">
-    <% @kittens.each do |kitten| %>
+    <div class="col-xs-12 col-md-6">
+      <div id="map" style="width: 100%; height: 600px;"></div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div class="filter wrapper-gray">
+      <form action="" class="form-inline search-bar">
+        <input type="text">
+        <input type="text">
+        <input type="submit" value="Search" class="btn btn-search">
+      </form>
+      </div>
+      <hr>
+      <% @kittens.each do |kitten| %>
     <div class="col-xs-12 col-sm-4 margin-bottom">
       <div class="card", style="background-image: url(<%= cl_image_path kitten.photos.first&.path %>)">
         <%= link_to '', kitten_path(kitten, start_date: @start_date, end_date: @end_date), class: "card-link" %>
-        <p class="card-description"><%=kitten.name%></p>
+          <p class="card-description"><%=kitten.name%></p>
+        </div>
       </div>
+      <% end %>
     </div>
-    <% end %>
+
   </div>
 </div>
+
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).on('ready', function() {
+      handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function(){
+        markers = handler.addMarkers(<%= raw @markers.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+      });
+    })
+  <% end %>
+<% end %>
 
 
