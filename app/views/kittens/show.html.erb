@@ -12,6 +12,7 @@
         <%= cl_image_tag photo.path, width: 400, height: 250, crop: :fill, :class => "kitten-image" %>
         <% end %>
         <div class="kitten-description">
+          <div id="kitten-price" style="display: none"><%= @kitten.price_per_day %></div>
           <p><%= @kitten.name %> is a young <%= @kitten.race %> cat.</p>
           <p>Most people say that <%= @kitten.name %> is a very <%=  @kitten.personality %> kitten.</p>
           <p>In terms of food, <%= @kitten.name %> prefers to eat <%= @kitten.diet %>.</p>
@@ -51,8 +52,14 @@
         <%= simple_form_for [@kitten, @booking] do |f| %>
         <%= f.error_notification %>
 
-        <%= f.input :start_date, as: :string, input_html: {value: '20/02/2016', class: "datepicker"}%>
-        <%= f.input :end_date, as: :string, input_html: {value: '21/02/2016', class: "datepicker"} %>
+        <%= f.input :start_date, as: :string, input_html: {id: "start_date", class: "datepicker"}%>
+        <%= f.input :end_date, as: :string, input_html: {id: "end_date",class: "datepicker"} %>
+
+        <div class="total-price">
+          <div class="total-price-label text-right">Montant total :</div>
+          <div class="total-price-amount">0</div>
+          <div> €</div>
+        </div>
 
         <%= f.button :submit, "Book this kitten", class:"btn btn-success booking-btn" %>
         <% end %>
