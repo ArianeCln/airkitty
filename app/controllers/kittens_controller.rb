@@ -1,10 +1,11 @@
 class KittensController < ApplicationController
-
   before_action :set_kitten, only: [:show, :edit, :update, :destroy]
 
   def index
     @kittens = Kitten.all
-    if params[:search]
+    @start_date = params[:start_date]
+    @end_date = params[:end_date]
+    if !params[:search].blank?
       @kittens = Kitten.search(params[:search]).order("created_at DESC")
     else
       @kittens = Kitten.order('created_at DESC')
@@ -12,7 +13,8 @@ class KittensController < ApplicationController
   end
 
   def show
-    # @kitten_coordinates = { lat: @kitten.lat, lng: @kitten.lng }
+    @start_date = params[:start_date]
+    @end_date = params[:end_date]
   end
 
   def new

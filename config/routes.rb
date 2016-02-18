@@ -9,8 +9,10 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
 
   resources :kittens do
-    resources :bookings
+    resources :bookings, only: [:new, :create]
   end
+
+  resources :bookings, except: [:new, :create, :edit]
 
 
 
