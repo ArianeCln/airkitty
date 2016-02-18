@@ -12,6 +12,7 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'geocoder'
 gem "gmaps4rails"
+gem 'filterrific'
 
 gem 'sass-rails'
 gem 'jquery-rails'
