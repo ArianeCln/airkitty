@@ -12,21 +12,23 @@
 
 
 
-
     <div class="col-xs-12 col-md-6">
-
-
-
-
-          <% @kittens.each do |kitten| %>
-            <div class="col-xs-12 col-sm-6 margin-bottom">
-              <div class="card", style="background-image: url(<%= cl_image_path kitten.photos.first&.path %>)">
-                <%= link_to '', kitten_path(kitten), class: "card-link" %>
-                <p class="card-description"><%=kitten.name%></p>
-              </div>
-            </div>
-          <% end %>
-
+      <div class="filter wrapper-gray">
+      <form action="" class="form-inline search-bar">
+        <input type="text">
+        <input type="text">
+        <input type="submit" value="Search" class="btn btn-search">
+      </form>
+      </div>
+      <hr>
+      <% @kittens.each do |kitten| %>
+      <div class="col-xs-12 col-sm-6 margin-bottom">
+        <div class="card", style="background-image: url(<%= cl_image_path kitten.photos.first&.path %>)">
+          <%= link_to '', kitten_path(kitten), class: "card-link" %>
+          <p class="card-description"><%=kitten.name%></p>
+        </div>
+      </div>
+      <% end %>
     </div>
 
   </div>

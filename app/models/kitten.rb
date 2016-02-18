@@ -16,6 +16,8 @@ class Kitten < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
+  # scope :race, -> (race) { where race: race }
+
   def self.search(search)
     where("kittens.address ILIKE ?", "%#{search}%")
   end

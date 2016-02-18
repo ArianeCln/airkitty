@@ -45,9 +45,6 @@ class KittensController < ApplicationController
     @kitten.destroy
   end
 
-  def gmaps4rails_infowindow
-    "<img src=\"#{self.picture}\"> #{self.name}"
-  end
 
   private
 
