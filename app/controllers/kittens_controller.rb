@@ -49,6 +49,7 @@ class KittensController < ApplicationController
 
   def destroy
     @kitten.destroy
+    redirect_to user_path(current_user)
   end
 
 
