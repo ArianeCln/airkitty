@@ -1,64 +1,39 @@
-
-<!-- kitty  -->
-
-<div class ="wrapper-show">
-  <div class="container">
-    <div class = "row">
-      <div class= "col-xs-12 col-sm-6">
-        <div class="picture">
-          <% @kitten.photos.each do |photo| %>
-          <%= cl_image_tag photo.path, width: 500, height: 500, crop: :fill %>
+<div class="wrapper-show-kitten">
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-7 col-md-offset-1">
+      <div class="card-show-kitten text-center">
+        <div class="entete-kitten-show">
+          <h3 class="text-center"><%= @kitten.name %></h3>
+          <div class="kitten-price"><%= @kitten.price_per_day %> € per day</div>
+        </div>
+        <% @kitten.photos.each do |photo| %>
+        <%= cl_image_tag photo.path, width: 400, height: 250, crop: :fill, :class => "kitten-image" %>
+        <% end %>
+        <div class="kitten-description">
+          <p><%= @kitten.name %> is a young <%= @kitten.race %> cat.</p>
+          <p>Most people say that <%= @kitten.name %> is a very <%=  @kitten.personality %> kitten.</p>
+          <p>In terms of food, <%= @kitten.name %> prefers to eat <%= @kitten.diet %>.</p>
+          <% if @kitten.home_delivery %>
+            <div class="home-delivery"><%= @kitten.name %> can be brought directly to your place.</div>
+          <% else %>
+            <div class="home-delivery">You'll have to come and pick <%= @kitten.name %> at it's home.</div>
           <% end %>
         </div>
       </div>
-      <div class="col-xs-12 col-sm-4 col-sm-offset-1 padded">
-        <div class="bg-white padded-2em">
-          <h3 class="text-center"><%= @kitten.name %></h3>
-          <div class="padded-2em left-padded-5em">
-            <p><strong>Personality:</strong> <%=  @kitten.personality %></p>
-            <p><strong>Diet:</strong> <%= @kitten.diet %></p>
-            <p><strong>Home delivery option:</strong>  <%= @kitten.home_delivery %></p>
-            <p><strong>Price per day:</strong> <%= @kitten.price_per_day %></p>
-          </div>
-          <div class = "text-center">
-            <%= link_to "Book this cute kitty !", new_kitten_booking_path(@kitten), class:"btn btn-primary" %>
-          </div>
-        </div>
+    </div>
+    <div class="col-xs-12 col-md-3 col-ms-offset-1">
+      <div class="card-show-kitten">
+        <%= simple_form_for [@kitten, @booking] do |f| %>
+        <%= f.error_notification %>
+
+        <%= f.input :start_date, as: :string, input_html: {value: '20/02/2016', class: "datepicker"}%>
+        <%= f.input :end_date, as: :string, input_html: {value: '21/02/2016', class: "datepicker"} %>
+
+        <%= f.button :submit, "Book this kitten", class:"btn btn-success booking-btn" %>
+        <% end %>
       </div>
     </div>
-
-
-   <!--   social -->
-
-<!--    <div class="share-links text-center">
-    <a href="#" class="share-link bg-facebook">
-      <i class="fa fa-facebook"></i>
-    </a>
-    <a href="#" class="share-link bg-twitter">
-      <i class="fa fa-twitter"></i>
-    </a>
-    <a href="#" class="share-link bg-email">
-      <i class="fa fa-envelope-o"></i>
-    </a>
-    <a href="#" class="share-link bg-text">
-      <i class="fa fa-mobile"></i>
-    </a>
-    <br> -->
-
-
-    <!-- buttons  -->
-
-
-<!--    <%= link_to "delete this kitty!", kitten_path(@kitten), method: :delete, class:"btn btn-primary" %>
-<div class="text-center">
-    <%= link_to "I prefer another Kitty", kittens_path, class:"btn btn-warning" %>
-</div>
-
   </div>
 </div>
- -->
-<!--   redirect -->
-  </div>
-</div>
-
 

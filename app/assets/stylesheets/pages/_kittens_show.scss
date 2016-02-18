@@ -1,0 +1,39 @@
+.wrapper-show-kitten {
+  // background-color: #E6F7EE;
+  padding: 10px;
+}
+.kitten-image {
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  // border: white 1px solid;
+  margin: 10px;
+}
+.quasi-full-screen {
+  height: 80vh;
+  background-color: white;
+}
+.card-show-kitten {
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid #a8e6cf;
+  box-shadow: 0 0 5px #F2F2F2;
+}
+.entete-kitten-show {
+  display: flex;
+  vertical-align: center;
+  justify-content: space-between;
+  margin: 20px;
+  h3 {
+    margin: 0;
+  }
+}
+.kitten-description {
+  margin: 10px;
+  padding: 10px;
+}
+.home-delivery {
+  font-style: italic;
+  font-size: 13px;
+  margin-top: 40px;
+}
