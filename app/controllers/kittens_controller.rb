@@ -9,10 +9,14 @@ class KittensController < ApplicationController
     else
       @kittens = Kitten.order('created_at DESC')
     end
+    @markers = Gmaps4rails.build_markers(@kittens) do |kitten, marker|
+      marker.lat kitten.latitude
+      marker.lng kitten.longitude
+    end
   end
 
   def show
-    # @kitten_coordinates = { lat: @kitten.lat, lng: @kitten.lng }
+    @kitten_coordinates = { lat: @kitten.latitude, lng: @kitten.longitude }
   end
 
   def new
@@ -39,6 +43,10 @@ class KittensController < ApplicationController
 
   def destroy
     @kitten.destroy
+  end
+
+  def gmaps4rails_infowindow
+    "<img src=\"#{self.picture}\"> #{self.name}"
   end
 
   private

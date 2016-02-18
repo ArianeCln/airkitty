@@ -5,15 +5,45 @@
 
 <div class="container text-center kittens">
   <div class="row">
-    <% @kittens.each do |kitten| %>
-    <div class="col-xs-12 col-sm-4 margin-bottom">
-      <div class="card", style="background-image: url(<%= cl_image_path kitten.photos.first&.path %>)">
-        <%= link_to '', kitten_path(kitten), class: "card-link" %>
-        <p class="card-description"><%=kitten.name%></p>
-      </div>
+
+    <div class="col-xs-12 col-md-6">
+      <div id="map" style="width: 100%; height: 600px;"></div>
     </div>
-    <% end %>
+
+
+
+
+    <div class="col-xs-12 col-md-6">
+
+
+
+
+          <% @kittens.each do |kitten| %>
+            <div class="col-xs-12 col-sm-6 margin-bottom">
+              <div class="card", style="background-image: url(<%= cl_image_path kitten.photos.first&.path %>)">
+                <%= link_to '', kitten_path(kitten), class: "card-link" %>
+                <p class="card-description"><%=kitten.name%></p>
+              </div>
+            </div>
+          <% end %>
+
+    </div>
+
   </div>
 </div>
+
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).on('ready', function() {
+      handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function(){
+        markers = handler.addMarkers(<%= raw @markers.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+      });
+    })
+  <% end %>
+<% end %>
 
 
