@@ -20,6 +20,28 @@
             <div class="home-delivery">You'll have to come and pick <%= @kitten.name %> at it's home.</div>
           <% end %>
         </div>
+
+        <hr>
+
+        <div class="reviews">
+          <h4 class="text-center">Reviews</h4>
+          <% @kitten.reviews.each do |review| %>
+          <ul class="list-unstyled" >
+            <li>Rating : <%review.rating.times do %><i class="fa fa-star"></i><% end %></li>
+            <li><em>Avis : <%= review.content %></em></li>
+            <li>Créé le <%= review.created_at.strftime('%d.%m.%y') %></li>
+          </ul>
+          <hr>
+          <% end %>
+        </div>
+
+        <h5 class=""><strong>Add a new Review</strong></h5>
+        <%= simple_form_for [@kitten, @review] do |f| %>
+          <%= f.input :content, class: "reviews"%>
+          <%= f.label :rating, class: "reviews" %> <br> <%=render 'shared/stars' %>
+          <%= f.button :submit, class: "btn btn-success booking-btn btn-block" %>
+        <% end %>
+
       </div>
     </div>
     <div class="col-xs-12 col-md-3 col-ms-offset-1">

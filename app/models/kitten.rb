@@ -5,6 +5,7 @@ class Kitten < ActiveRecord::Base
   belongs_to :owner, class_name: :User, foreign_key: "user_id"
   has_many :bookings, dependent: :destroy
   has_many :renters, through: :bookings
+  has_many :reviews, dependent: :destroy
   has_attachments :photos, maximum: 3
 
   validates :name, presence: true
