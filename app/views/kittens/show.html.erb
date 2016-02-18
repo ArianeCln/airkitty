@@ -3,6 +3,7 @@
   <div class="row">
     <div class="col-xs-12 col-md-7 col-md-offset-1">
       <div class="card-show-kitten text-center">
+
         <div class="entete-kitten-show">
           <h3 class="text-center"><%= @kitten.name %></h3>
           <div class="kitten-price"><%= @kitten.price_per_day %> € per day</div>
@@ -36,11 +37,12 @@
         </div>
 
         <h5 class=""><strong>Add a new Review</strong></h5>
+        <div class="reviews">
         <%= simple_form_for [@kitten, @review] do |f| %>
-          <%= f.input :content, class: "reviews"%>
-          <%= f.label :rating, class: "reviews" %> <br> <%=render 'shared/stars' %>
+          <%= f.input :content, label_html: { class: 'reviews' }%>
+          <%= f.label :rating %> <br> <%=render 'shared/stars' %>
           <%= f.button :submit, class: "btn btn-success booking-btn btn-block" %>
-        <% end %>
+        <% end %></div>
 
       </div>
     </div>
