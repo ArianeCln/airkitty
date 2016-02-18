@@ -10,6 +10,8 @@ class KittensController < ApplicationController
     else
       @kittens = Kitten.order('created_at DESC')
     end
+    @kittens = @kittens.race(params[:race]) if params[:race].present?
+    @kittens = @kittens.personality(params[:personality]) if params[:personality].present?
     @markers = Gmaps4rails.build_markers(@kittens) do |kitten, marker|
       marker.lat kitten.latitude
       marker.lng kitten.longitude

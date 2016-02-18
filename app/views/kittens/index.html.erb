@@ -1,6 +1,3 @@
-
-
-
 <h3 class= "index-header text-center"><i class="fa fa-star text-center"></i> Here are the kitties nearby <i class="fa fa-star"></i></h3>
 
 <div class="container text-center kittens">
@@ -10,15 +7,31 @@
     </div>
     <div class="col-xs-12 col-md-6">
       <div class="filter wrapper-gray">
-      <form action="" class="form-inline search-bar">
-        <input type="text">
-        <input type="text">
-        <input type="submit" value="Search" class="btn btn-search">
-      </form>
+        <span class="filter"><strong>Filter your search</strong></span>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Personalities <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <% Kitten::PERSONA.each do |p| %>
+              <li><%= link_to p, kittens_path(personality: p, search: params[:search], start_date: params[:start_date], end_date: params[:end_date], race: params[:race]) %></li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Races <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <% Kitten::RACES.each do |p| %>
+              <li><%= link_to p, kittens_path(race: p, search: params[:search], start_date: params[:start_date], end_date: params[:end_date], personality: params[:personality]) %></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
       <hr>
       <% @kittens.each do |kitten| %>
-    <div class="col-xs-12 col-sm-4 margin-bottom">
+    <div class="col-xs-12 col-sm-6 margin-bottom">
       <div class="card", style="background-image: url(<%= cl_image_path kitten.photos.first&.path %>)">
         <%= link_to '', kitten_path(kitten, start_date: @start_date, end_date: @end_date), class: "card-link" %>
           <p class="card-description"><%=kitten.name%></p>
