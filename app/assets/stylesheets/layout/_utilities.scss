@@ -34,3 +34,35 @@
 .bg-white {
   background: white;
 }
+.flexbox {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  .flex-item {
+    flex: 0 0 auto;
+    img {
+      margin: 10px 0;
+    }
+  }
+  .flex-item-grow {
+    flex: 1 0 auto;
+    .kitten-infos,
+    .dashboard-booking-infos {
+      margin-left: 10px;
+      li strong {
+        color: pink
+      }
+    }
+  }
+}
+.pink-border-btm {
+  border-bottom: 1px solid rgb(221, 221, 221);
+}
+.link {
+  background-color: transparent;
+  border: none;
+  color: #469AE0;
+}
+.small {
+  font-size: 13px;
+}
