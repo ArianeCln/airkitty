@@ -4,10 +4,10 @@
     <h1>FIND YOUR FLUFFY FRIEND</h1>
     <p>Rent nice kittens around you, no strings attached</p>
     <%= form_tag(kittens_path, :method => "get", id: "search-form", class: "form-inline search-bar") do %>
-    <%= text_field_tag :search, params[:search], class: "form-control fields", placeholder: "Where are you?" %>
-    <%= text_field_tag :start_date, nil, class: "form-control fields datepicker", placeholder: "Start Date"%>
-    <%= text_field_tag :end_date, nil, class: "form-control fields datepicker", placeholder: "End Date"%>
-    <%= submit_tag "Search", class: "btn btn-search" %>
+      <%= text_field_tag :search, params[:search], class: "form-control fields", placeholder: "Where are you?" %>
+      <%= text_field_tag :start_date, nil, class: "form-control fields datepicker", placeholder: "Start Date"%>
+      <%= text_field_tag :end_date, nil, class: "form-control fields datepicker", placeholder: "End Date"%>
+      <%= submit_tag "Search", class: "btn btn-search" %>
     <% end %>
   </div>
 </div>

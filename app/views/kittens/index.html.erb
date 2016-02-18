@@ -8,7 +8,7 @@
     <% @kittens.each do |kitten| %>
     <div class="col-xs-12 col-sm-4 margin-bottom">
       <div class="card", style="background-image: url(<%= cl_image_path kitten.photos.first&.path %>)">
-        <%= link_to '', kitten_path(kitten), class: "card-link" %>
+        <%= link_to '', kitten_path(kitten, start_date: @start_date, end_date: @end_date), class: "card-link" %>
         <p class="card-description"><%=kitten.name%></p>
       </div>
     </div>
