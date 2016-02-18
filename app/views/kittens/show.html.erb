@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-7 col-md-offset-1">
-      <div class="card-show-kitten text-center">
+      <div class="card-show-kitten text-center light-shadow">
 
         <div class="entete-kitten-show">
           <h3 class="text-center"><%= @kitten.name %></h3>
@@ -13,9 +13,9 @@
         <% end %>
         <div class="kitten-description">
           <div id="kitten-price" style="display: none"><%= @kitten.price_per_day %></div>
-          <p><%= @kitten.name %> is a young <%= @kitten.race %> cat.</p>
-          <p>Most people say that <%= @kitten.name %> is a very <%=  @kitten.personality %> kitten.</p>
-          <p>In terms of food, <%= @kitten.name %> prefers to eat <%= @kitten.diet %>.</p>
+          <p><%= @kitten.name %> is a young <strong><%= @kitten.race %></strong> cat.</p>
+          <p>Most people say that <%= @kitten.name %> is a very <strong><%=  @kitten.personality %></strong> kitten.</p>
+          <p>In terms of food, <%= @kitten.name %> prefers to eat <strong><%= @kitten.diet %></strong>.</p>
           <% if @kitten.home_delivery %>
             <div class="home-delivery"><%= @kitten.name %> can be brought directly to your place.</div>
           <% else %>
@@ -58,10 +58,10 @@
         <div class="total-price">
           <div class="total-price-label text-right">Montant total :</div>
           <div class="total-price-amount">0</div>
-          <div> €</div>
+          <div style="padding-right: 5px"> €</div>
         </div>
 
-        <%= f.button :submit, "Book this kitten", class:"btn btn-success booking-btn" %>
+        <%= f.button :submit, "Request a booking", class:"btn btn-success booking-btn" %>
         <% end %>
       </div>
     </div>
