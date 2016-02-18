@@ -1,3 +1,33 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.container-profile  {
+background-color: white;
+  margin : 5px 5px 5px 5px;
+  border: solid pink 1px;
+}
+
+.title-dashboard {
+padding:30px 30px 30px 0px;
+color: pink;
+margin: 10px 10px 10px 0px;
+}
+
+#dashboard-wrapper {
+  padding-top: 20px;
+  .panel {
+    .panel-heading {
+      h3.panel-title {
+        color: pink;
+      }
+    }
+  }
+  #kittens,
+  #bookings {
+    .panel-body {
+      padding-top: 0 !important;
+    }
+  }
+}

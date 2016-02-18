@@ -1,56 +1,121 @@
-
-<div class= "container container-dashboard">
-    <h1>My Profile</h1>
-    <p>My name<%= current_user.name %></p>
-    <p>My address<%= current_user.address %></p>
-    <p>My email<%= current_user.email %></p>
-</div>
-
-<div class = "container container-dashboard">
-  <div class ="row">
-    <div class="col-xs-12 col-sm-6 col-sm-6-offbeat-1">
-      <h2> mes chats</h2>
-        <div class = "card-dashboard">
-          <% if current_user.kittens.length == 1 %>
-            <h3><strong><%= current_user.kittens.name %></strong></h3>
-            <p><strong>Breed:</strong><%= current_user.kittens.race %></p>
-            <p><strong>Price per day:</strong><%= current_user.kittens.price_per_day %>€</p>
-          <% else  %>
-            <% current_user.kittens.each do |kitten| %>
-            <h3>name:<strong><%= current_user.kittens.name %></strong></h3>
-            <p><strong>Breed:</strong><%= kitten.race %></p>
-            <p><strong>Price per day:</strong><%=kitten.price_per_day %>€</p>
-            <% end %>
-          <%end%>
+<div id="dashboard-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">My Profile</h3>
+          </div>
+          <div class="panel-body">
+            <p><strong>My name: </strong><%= current_user.name %></p>
+            <p><strong>My address: </strong><%= current_user.address %></p>
+            <p><strong>My email: </strong><%= current_user.email %></p>
+          </div>
         </div>
+      </div>
     </div>
-  <div class="col-xs-12 col-sm-6 col-sm-6-offbeat-1">
-    <div class= "card-dashboard">
-      <h2>Mes bookings</h2>
-        <% if current_user.bookings.length == 1 %>
-          <p><%= current_user.bookings.kitten %></p>
-          <p><%= current_user.bookings.user_id %></p>
-          <p><%= current_user.bookings.accepted %></p>
-          <p><%= current_user.bookings.start_date %></p>
-          <p><%= current_user.bookings.end_date %></p>
-        <% else  %>
-          <% current_user.bookings.each do |booking| %>
-            <p><%= booking.kitten_id %></p>
-            <p><%= booking.user_id %></p>
-          <% end %>
-        <%end%>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="panel panel-default" id="kittens">
+          <div class="panel-heading">
+            <h3 class="panel-title">My kitties</h3>
+          </div>
+          <div class="panel-body">
+            <% current_user.kittens.each do |kitten| %>
+              <div class="flexbox pink-border-btm">
+                <div class="flex-item">
+                  <% if kitten.photos? %>
+                    <%= cl_image_tag kitten.photos.first.path, height: 64, width: 64, crop: :fill %>
+                  <% end %>
+                </div>
+                <div class="flex-item-grow">
+                  <div class="kitten-infos">
+                    <ul class="list-unstyled">
+                      <li>
+                        <strong><%= kitten.name %></strong>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="flex-item">
+                  <%= link_to "Edit", edit_kitten_path(kitten), class: "btn btn-xs-primary" %>
+                  <%= link_to "Delete", kitten_path(kitten), method: :delete, class: "btn btn-xs-danger" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="panel panel-default" id="bookings">
+          <div class="panel-heading">
+            <h3 class="panel-title">My bookings</h3>
+          </div>
+          <div class="panel-body">
+            <% current_user.bookings.each do |booking| %>
+              <div class="flexbox pink-border-btm">
+                <div class="flex-item">
+                  <% if booking.kitten.photos? %>
+                    <%= cl_image_tag booking.kitten.photos.first.path, height: 64, width: 64, crop: :fill %>
+                  <% end %>
+                </div>
+                <div class="flex-item-grow">
+                  <div class="dashboard-booking-infos">
+                    <ul class="list-unstyled">
+                      <li>
+                        <strong><%= booking.kitten.name %></strong>
+                      </li>
+                      <li class="small">
+                        starts on: <%= booking.start_date.strftime("%Y/%m/%d") %>
+                      </li>
+                      <li class="small">
+                        ends on: <%= booking.end_date.strftime("%Y/%m/%d") %>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+              <% if current_user == booking.kitten.owner %>
+                <% if booking.accepted.nil? %>
+                    <div class="flex-item">
+                      <%= simple_form_for booking do |f| %>
+                        <%= f.input :accepted, as: :hidden, input_html: {value: true} %>
+                        <%= f.submit "Accept", class: "link" %>
+                      <% end %>
+                    </div>
+                    <div class="flex-item">
+                      <%= simple_form_for booking do |f| %>
+                        <%= f.input :accepted, as: :hidden, input_html: {value: false} %>
+                        <%= f.submit "Decline", class: "link" %>
+                      <% end %>
+                    </div>
+                  <% else %>
+                    <div class="flex-item">
+                      <p>Status : <%= booking.accepted ? "accepted" : "declined" %></p>
+                    </div>
+                <% end %>
+              <% else %>
+                <% if booking.accepted %>
+                    <div class="flex-item">
+                    <p>Accepted</p>
+                    </div>
+                  <% elsif booking.accepted == false %>
+                    <div class="flex-item">
+                    <p>Declined</p>
+                    </div>
+                  <% else  %>
+                    <div class="flex-item">
+                    <p> Pending request</p>
+                    </div>
+                <% end %>
+              <% end %>
+
+
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
