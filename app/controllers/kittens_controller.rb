@@ -22,7 +22,7 @@ class KittensController < ApplicationController
     @start_date = params[:start_date]
     @end_date = params[:end_date]
     @kitten_coordinates = { lat: @kitten.latitude, lng: @kitten.longitude }
-    @booking = Booking.new
+    @booking = Booking.new(start_date: @start_date, end_date: @end_date)
   end
 
   def new
