@@ -23,6 +23,7 @@ class KittensController < ApplicationController
     @end_date = params[:end_date]
     @kitten_coordinates = { lat: @kitten.latitude, lng: @kitten.longitude }
     @booking = Booking.new(start_date: @start_date, end_date: @end_date)
+    @review = Review.new(kitten: @kitten)
   end
 
   def new

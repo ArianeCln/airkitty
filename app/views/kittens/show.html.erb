@@ -3,6 +3,7 @@
   <div class="row">
     <div class="col-xs-12 col-md-7 col-md-offset-1">
       <div class="card-show-kitten text-center">
+
         <div class="entete-kitten-show">
           <h3 class="text-center"><%= @kitten.name %></h3>
           <div class="kitten-price"><%= @kitten.price_per_day %> € per day</div>
@@ -21,6 +22,29 @@
             <div class="home-delivery">You'll have to come and pick <%= @kitten.name %> at it's home.</div>
           <% end %>
         </div>
+
+        <hr>
+
+        <div class="reviews">
+          <h4 class="text-center">Reviews</h4>
+          <% @kitten.reviews.each do |review| %>
+          <ul class="list-unstyled" >
+            <li>Rating : <%review.rating.times do %><i class="fa fa-star"></i><% end %></li>
+            <li><em>Avis : <%= review.content %></em></li>
+            <li>Créé le <%= review.created_at.strftime('%d.%m.%y') %></li>
+          </ul>
+          <hr>
+          <% end %>
+        </div>
+
+        <h5 class=""><strong>Add a new Review</strong></h5>
+        <div class="reviews">
+        <%= simple_form_for [@kitten, @review] do |f| %>
+          <%= f.input :content, label_html: { class: 'reviews' }%>
+          <%= f.label :rating %> <br> <%=render 'shared/stars' %>
+          <%= f.button :submit, class: "btn btn-success booking-btn btn-block" %>
+        <% end %></div>
+
       </div>
     </div>
     <div class="col-xs-12 col-md-3 col-ms-offset-1">
