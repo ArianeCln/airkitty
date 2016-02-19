@@ -1,24 +1,26 @@
-<div class="container">
-  <div class = "row">
-    <div class = "col-xs-12 col-sm-4 col-sm-offset-4">
+<div class="wrapper-show-kitten">
+  <div class="container">
+    <div class = "row">
+      <div class = "col-xs-12 col-sm-6 col-sm-offset-3">
+        <div class="card-show-kitten light-shadow">
+          <h3 class="text-center" style="color:pink; padding:20px">Edit your Profile</h3>
+          <%= simple_form_for @user do |f|%>
 
-     <h3 class="text-center" style="color:pink; padding:20px">Edit your Profile</h3>
-    <%= simple_form_for @user do |f|%>
+          <%= f.input :name %>
+          <%= f.input :address %>
+          <%= f.input :zipcode %>
+          <%= f.input :town %>
+          <%= f.input :email %>
+          <%= f.input :password %>
+          <br>
+          <div class= "text-center">
+          <%= f.button :submit, "GO!", class: "btn btn-success"%></div>
+            <% end %>
 
-      <%= f.input :name %>
-      <%= f.input :address %>
-      <%= f.input :zipcode %>
-      <%= f.input :town %>
-      <%= f.input :email %>
-      <%= f.input :password %>
-      <br>
-      <div class= "text-center">
-      <%= f.button :submit, "GO!", class:"btn btn-primary"%></div>
-     <% end %>
+            <br>
 
-<br>
-
-
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>

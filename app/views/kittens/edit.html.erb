@@ -1,26 +1,28 @@
+<div class="wrapper-show-kitten">
+  <div class="container">
+    <div class = "row">
+      <div class = "col-xs-12 col-sm-6 col-sm-offset-3">
+        <div class="card-show-kitten light-shadow" class="edit-profile">
+          <h3 class="text-center" style="color:pink; padding:20px">Edit your Kitty</h3>
 
-<div class="container">
-  <div class = "row">
-    <div class = "col-xs-12 col-sm-4 col-sm-offset-4">
+          <%= simple_form_for @kitten do |f|%>
 
-      <h3 class="text-center" style="color:pink; padding:20px">Edit your Kitty</h3>
+            <%= f.input :name, placeholder: "Kitty" %>
+            <%= f.input :race, label: "Breed", collection: Kitten::RACES, prompt: "choose"%>
+            <%= f.input :personality, collection: Kitten::PERSONA, prompt: "choose" %>
+            <%= f.input :diet, placeholder: "organic croquettes" %>
+            <%= f.input :address, placeholder: "16 Villa Gaudelet 75011" %>
+            <%= f.input :home_delivery, as: :boolean, checked_value: true, unchecked_value: false%>
+            <%= f.input :price_per_day, placeholder: "how much is kitty?" %>
+            <%= f.input :photos, as: :attachinary %>
+            <br>
+            <div class= "text-center">
+              <%= f.button :submit, "Edit my kitty", class: "btn btn-success"%>
+            </div>
+          <% end %>
+        </div>
 
-        <%= simple_form_for @kitten do |f|%>
-
-          <%= f.input :name, placeholder: "Kitty" %>
-          <%= f.input :race, label: "Breed", collection: Kitten::RACES, prompt: "choose"%>
-          <%= f.input :personality, collection: Kitten::PERSONA, prompt: "choose" %>
-          <%= f.input :diet, placeholder: "organic croquettes" %>
-          <%= f.input :address, placeholder: "16 Villa Gaudelet 75011" %>
-          <%= f.input :home_delivery, as: :boolean, checked_value: true, unchecked_value: false%>
-          <%= f.input :price_per_day, placeholder: "how much is kitty?" %>
-          <%= f.input :photos, as: :attachinary %>
-          <br>
-          <div class= "text-center">
-          <%= f.button :submit, "Edit my kitty", class:"btn btn-primary"%></div>
-         <% end %>
-
-
+      </div>
     </div>
   </div>
 </div>
