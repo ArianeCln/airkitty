@@ -1,0 +1,6 @@
+<ul class="list-unstyled" >
+  <li>Rating : <%review.rating.times do %><i class="fa fa-star"></i><% end %></li>
+  <li><em>Avis : <%= review.content %></em></li>
+  <li>Créé le <%= review.created_at.strftime('%d.%m.%y') %></li>
+</ul>
+<hr>

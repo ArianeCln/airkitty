@@ -10,9 +10,16 @@ class ReviewsController < ApplicationController
     @review.rating = params[:rating]
     @review.kitten = @kitten
     if @review.save
-      redirect_to kitten_path(@kitten)
+      respond_to do |format|
+        format.html { redirect_to kitten_path(@kitten) }
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
+
     else
-      render "kittens/show"
+      respond_to do |format|
+        format.html { render "kittens/show" }
+        format.js  # <-- idem
+      end
     end
   end
 
