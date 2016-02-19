@@ -25,7 +25,7 @@ function calcul_montant() {
     var end_date = process($('#end_date').val());
     var kitten_price = $('#kitten-price').text();
     var number_of_days = (end_date - start_date)/(1000*60*60*24);
-    var total_price = (number_of_days + 1) * kitten_price;
+    var total_price = (number_of_days) * kitten_price;
     $('.total-price-amount').html(total_price);
   }
 }

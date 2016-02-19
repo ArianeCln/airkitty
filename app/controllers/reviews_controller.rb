@@ -10,6 +10,8 @@ class ReviewsController < ApplicationController
     @review.rating = params[:rating]
     @review.kitten = @kitten
     if @review.save
+      @kitten.average_rating = @kitten.calc_average_rating
+      @kitten.save
       respond_to do |format|
         format.html { redirect_to kitten_path(@kitten) }
         format.js  # <-- will render `app/views/reviews/create.js.erb`

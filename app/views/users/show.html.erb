@@ -10,7 +10,7 @@
             <p><strong>My name: </strong><%= current_user.name %></p>
             <p><strong>My address: </strong><%= current_user.address %></p>
             <p><strong>My email: </strong><%= current_user.email %></p>
-            <%= link_to "Edit", edit_user_path(current_user), class: "btn btn-xs-primary" %>
+            <%= link_to "Edit", edit_user_path(current_user), class: "btn-user" %>
           </div>
 
         </div>
@@ -23,27 +23,34 @@
             <h3 class="panel-title">My kitties</h3>
           </div>
           <div class="panel-body">
-            <% current_user.kittens.each do |kitten| %>
-              <div class="flexbox pink-border-btm">
-                <div class="flex-item">
-                  <% if kitten.photos? %>
-                    <%= cl_image_tag kitten.photos.first.path, height: 64, width: 64, crop: :fill %>
-                  <% end %>
-                </div>
-                <div class="flex-item-grow">
-                  <div class="kitten-infos">
-                    <ul class="list-unstyled">
-                      <li>
-                        <strong><%= kitten.name %></strong>
-                      </li>
-                    </ul>
+            <% if current_user.kittens.empty? %>
+              <div class="no-kitten">
+                <p>You don't have any registered kitten yet. If you want to share your kitten with the world, please add it :</p>
+                <%= link_to "Add your fluffy friend to AirKitty", new_kitten_path, class: "btn-user btn center-block" %>
+              </div>
+            <% else %>
+              <% current_user.kittens.each do |kitten| %>
+                <div class="flexbox pink-border-btm">
+                  <div class="flex-item">
+                    <% if kitten.photos? %>
+                      <%= cl_image_tag kitten.photos.first.path, height: 64, width: 64, crop: :fill %>
+                    <% end %>
+                  </div>
+                  <div class="flex-item-grow">
+                    <div class="kitten-infos">
+                      <ul class="list-unstyled">
+                        <li>
+                          <strong><%= kitten.name %></strong>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="flex-item">
+                    <%= link_to "Edit", edit_kitten_path(kitten), class: "btn btn-xs-primary" %>
+                    <%= link_to "Delete", kitten_path(kitten), method: :delete, class: "btn btn-xs-danger" %>
                   </div>
                 </div>
-                <div class="flex-item">
-                  <%= link_to "Edit", edit_kitten_path(kitten), class: "btn btn-xs-primary" %>
-                  <%= link_to "Delete", kitten_path(kitten), method: :delete, class: "btn btn-xs-danger" %>
-                </div>
-              </div>
+              <% end %>
             <% end %>
           </div>
         </div>
