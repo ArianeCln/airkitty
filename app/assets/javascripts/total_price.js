@@ -1,7 +1,6 @@
 $(document).ready(function() {
-  $('#start_date').ready(function() {
-    calcul_montant();
-  })
+  calcul_montant();
+
   $('#start_date').change(function() {
     calcul_montant();
     });
@@ -11,8 +10,12 @@ $(document).ready(function() {
 });
 
 function process(date){
+  if ( _.isString(date)  ) {
    var parts = date.split("/");
    return new Date(parts[2], parts[1] - 1, parts[0]);
+  } else {
+    return 0;
+  }
 }
 
 function calcul_montant() {
