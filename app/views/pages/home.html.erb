@@ -54,21 +54,18 @@
       <h3>The kittens of the week</h3>
       <i class="fa fa-paw"></i>
     </div>
-    <div class="col-xs-12 col-sm-4">
-      <div class="card light-shadow", style="background-image: url(<%= asset_path 'kitten1.jpg' %>)">
-        <p class="card-description">Tigrou</p>
+    <% @top_three_cats.each do |kitten|%>
+
+      <div class="col-xs-12 col-sm-4">
+        <div class="card light-shadow", style="background-image: url(<%= cl_image_path kitten.photos.first&.path %>)">
+          <%= link_to '', kitten_path(kitten, start_date: @start_date, end_date: @end_date), class: "card-link" %>
+          <p class="card-description"><%=kitten.name%></p>
+        </div>
       </div>
-    </div>
-    <div class="col-xs-12 col-sm-4">
-      <div class="card light-shadow", style="background-image: url(<%= asset_path 'kitten2.jpg' %>)">
-        <p class="card-description">Garfield</p>
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-4">
-      <div class="card light-shadow", style="background-image: url(<%= asset_path 'kitten3.jpg' %>)">
-        <p class="card-description">Felix</p>
-      </div>
-    </div>
+
+    <% end %>
+
+
   </div>
 </div>
 
