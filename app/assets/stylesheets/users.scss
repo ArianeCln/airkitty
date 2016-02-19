@@ -55,3 +55,11 @@ margin: 10px 10px 10px 0px;
     font-weight: bold;
   }
 }
+.btn-links {
+  margin-top: 10px;
+  color: $green;
+}
+.btn-links:hover {
+  text-decoration: none;
+  color: #02936F;
+}
