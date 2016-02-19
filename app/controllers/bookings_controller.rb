@@ -15,7 +15,7 @@ class BookingsController < ApplicationController
     @booking.renter = current_user
     @booking.kitten = @kitten
     if @booking.save
-      redirect_to user_path(current_user)
+      redirect_to booking_path(@booking)
     else
       render :new
     end
@@ -24,7 +24,7 @@ class BookingsController < ApplicationController
   def update
     @booking.update(booking_params)
     if @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to user_path(current_user)
     else
       render :show
     end
