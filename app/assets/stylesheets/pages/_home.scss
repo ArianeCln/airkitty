@@ -7,19 +7,39 @@
   border: 1px solid #a8e6cf;
   border-radius: 2px;
   padding: 10px 5px;
-  margin-top: 20px;
-  height: 150px;
-}
-
-.testimony p {
-  padding-top: 10px;
-  font-size: 15px;
+  margin: 5px;
+  height: 170px;
+  p {
+    padding: 10px;
+    font-size: 15px;
+    font-style: italic;
+  }
 }
 
 .kittens {
   margin-bottom: 30px;
 }
-
-.kittens h3{
+.title-home {
+  margin-top: 60px;
+  margin-bottom: 40px;
+  h3 {
+    margin: 0px 15px 0px 15px;
+  }
+  i {
+    padding-top: 7px;
+    font-size: 15px;
+  }
+}
+.flex-title {
+  display: flex;
+  justify-content: center;
+}
+.big-paw {
+  font-size: 30px;
+  color: pink;
+}
+.bottom-logo {
+  height: 60px;
+  margin-top: 25px;
   margin-bottom: 40px;
 }

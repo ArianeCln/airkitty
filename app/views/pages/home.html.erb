@@ -17,23 +17,25 @@
   <div class="container">
     <div class="row">
 
-      <h3>Why AirKitty is good for you?</h3>
+      <div class="title-home">
+        <h3>Why AirKitty is good for you?</h3>
+      </div>
       <div class="col-xs-12 col-md-4">
-        <div class="testimony">
+        <div class="testimony light-shadow">
           <%= image_tag 'romain.jpeg', class: "avatar-large" %>
           <p><em>"It's like having a pet, whitout all the problems. I love it!"</em></p>
         </div>
       </div>
 
       <div class="col-xs-12 col-md-4">
-        <div class="testimony">
+        <div class="testimony light-shadow">
           <%= image_tag 'seb.jpg', class: "avatar-large" %>
-          <p><em>"After a long and hard week of work, I can come home and meet a new fluffy friend for the weekend. I find it really conforting :)"</em></p>
+          <p>"After a long and hard week of work, I can come home and meet a new fluffy friend for the weekend. I find it really conforting :)"</p>
         </div>
       </div>
 
       <div class="col-xs-12 col-md-4">
-        <div class="testimony">
+        <div class="testimony light-shadow">
           <%= image_tag 'boris.jpg', class: "avatar-large" %>
           <p><em>"I had mice in my flat. I rented out a cat for a week on AirKitty, and now they're all gone ! What a great service !"</em></p>
         </div>
@@ -47,33 +49,43 @@
 <!-- Kittens of the week -->
 <div class="container text-center kittens">
   <div class="row">
-
-    <h3><i class="fa fa-star"></i> The kittens of the week <i class="fa fa-star"></i></h3>
-
+    <div class="flex-title title-home">
+      <i class="fa fa-paw"></i>
+      <h3>The kittens of the week</h3>
+      <i class="fa fa-paw"></i>
+    </div>
     <div class="col-xs-12 col-sm-4">
-      <div class="card", style="background-image: url(<%= asset_path 'kitten1.jpg' %>)">
+      <div class="card light-shadow", style="background-image: url(<%= asset_path 'kitten1.jpg' %>)">
         <p class="card-description">Tigrou</p>
       </div>
     </div>
     <div class="col-xs-12 col-sm-4">
-      <div class="card", style="background-image: url(<%= asset_path 'kitten2.jpg' %>)">
+      <div class="card light-shadow", style="background-image: url(<%= asset_path 'kitten2.jpg' %>)">
         <p class="card-description">Garfield</p>
       </div>
     </div>
     <div class="col-xs-12 col-sm-4">
-      <div class="card", style="background-image: url(<%= asset_path 'kitten3.jpg' %>)">
+      <div class="card light-shadow", style="background-image: url(<%= asset_path 'kitten3.jpg' %>)">
         <p class="card-description">Felix</p>
       </div>
     </div>
-
   </div>
 </div>
 
 <!-- Button back to top -->
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-      <%= link_to "Get my fluffy friend", root_path, class: "navbar-wagon-item navbar-wagon-button btn center-block" %>
+    <div class="col-xs-12">
+      <div class="flex-title">
+        <%= link_to root_path do %>
+          <%= image_tag("bouton_home.png", class: "pulse bottom-logo") %>
+<!--           <div class="big-paw">
+          <i class="fa fa-paw"></i>
+          </div> -->
+        <% end %>
+
+<!--         <%= link_to "Get my fluffy friend", root_path, class: "navbar-wagon-item navbar-wagon-button btn center-block" %> -->
+      </div>
     </div>
   </div>
 </div>
