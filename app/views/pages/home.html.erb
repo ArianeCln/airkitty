@@ -60,6 +60,11 @@
         <div class="card light-shadow", style="background-image: url(<%= cl_image_path kitten.photos.first&.path %>)">
           <%= link_to '', kitten_path(kitten, start_date: @start_date, end_date: @end_date), class: "card-link" %>
           <p class="card-description"><%=kitten.name%></p>
+          <div class="card-user">
+            <% kitten.average_rating.round.times do %>
+              <i class="fa fa-star" style="color:#FFB400"></i>
+            <% end %>
+          </div>
         </div>
       </div>
 
