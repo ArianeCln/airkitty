@@ -1,7 +1,11 @@
 <div class="wrapper-show-kitten">
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-md-7 col-md-offset-1">
+    <% if !(current_user.kittens.include?(@kitten)) %>
+      <div class="col-xs-12 col-md-7 col-md-offset-1">
+    <% else %>
+      <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <% end %>
       <div class="card-show-kitten text-center light-shadow">
 
         <div class="entete-kitten-show">
@@ -32,34 +36,42 @@
           <% end %>
         </div>
 
-        <h5 class=""><strong>Add a new Review</strong></h5>
-        <div class="reviews">
-        <%= simple_form_for [@kitten, @review], remote: true do |f| %>
-          <%= f.input :content, label_html: { class: 'reviews' }%>
-          <%= f.label :rating %> <br> <%=render 'shared/stars' %>
-          <%= f.button :submit, class: "btn btn-success booking-btn btn-block" %>
-        <% end %></div>
-
-      </div>
-    </div>
-    <div class="col-xs-12 col-md-3 col-ms-offset-1">
-      <div class="card-show-kitten">
-        <%= simple_form_for [@kitten, @booking] do |f| %>
-        <%= f.error_notification %>
-
-        <%= f.input :start_date, as: :string, input_html: {id: "start_date", class: "datepicker"}%>
-        <%= f.input :end_date, as: :string, input_html: {id: "end_date",class: "datepicker"} %>
-
-        <div class="total-price">
-          <div class="total-price-label text-right">Montant total :</div>
-          <div class="total-price-amount">0</div>
-          <div style="padding-right: 5px"> €</div>
-        </div>
-
-        <%= f.button :submit, "Request a booking", class:"btn btn-success booking-btn" %>
+        <% if !(current_user.kittens.include?(@kitten)) || @kitten.renters.include?(current_user) %>
+          <h5 class=""><strong>Add a new Review</strong></h5>
+          <div class="reviews">
+          <%= simple_form_for [@kitten, @review], remote: true do |f| %>
+            <%= f.input :content, label_html: { class: 'reviews' }%>
+            <%= f.label :rating %> <br> <%=render 'shared/stars' %>
+            <%= f.button :submit, class: "btn btn-success booking-btn btn-block" %>
+          <% end %></div>
         <% end %>
+        <% if current_user.kittens.include?(@kitten) %>
+          <%= link_to "Update your kitten's profile", edit_kitten_path(@kitten), class: "btn btn-success" %>
+         <% end %>
+
       </div>
     </div>
+    <% if !(current_user.kittens.include?(@kitten)) %>
+      <div class="col-xs-12 col-md-3 col-ms-offset-1">
+        <div class="card-show-kitten">
+          <%= simple_form_for [@kitten, @booking] do |f| %>
+          <%= f.error_notification %>
+
+          <%= f.input :start_date, as: :string, input_html: {id: "start_date", class: "datepicker"}%>
+          <%= f.input :end_date, as: :string, input_html: {id: "end_date",class: "datepicker"} %>
+
+          <div class="total-price">
+            <div class="total-price-label text-right">Montant total :</div>
+            <div class="total-price-amount">0</div>
+            <div style="padding-right: 5px"> €</div>
+          </div>
+
+          <%= f.button :submit, "Request a booking", class:"btn btn-success booking-btn" %>
+          <% end %>
+        </div>
+      </div>
+    <% else %>
+    <% end %>
   </div>
 </div>
 

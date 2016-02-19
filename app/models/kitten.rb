@@ -23,4 +23,13 @@ class Kitten < ActiveRecord::Base
   def self.search(search)
     where("kittens.address ILIKE ?", "%#{search}%")
   end
+
+  def calc_average_rating
+    self.reviews
+    sum = 0
+    self.reviews.each do |review|
+      sum += review.rating
+    end
+    average = sum.fdiv(self.reviews.count).round
+  end
 end
