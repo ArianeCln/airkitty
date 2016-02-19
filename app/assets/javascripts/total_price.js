@@ -1,5 +1,7 @@
 $(document).ready(function() {
-  calcul_montant();
+  $('#start_date').ready(function() {
+    calcul_montant();
+  })
   $('#start_date').change(function() {
     calcul_montant();
     });
