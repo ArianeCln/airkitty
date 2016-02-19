@@ -19,6 +19,7 @@ class KittensController < ApplicationController
   end
 
   def show
+    redirect_to new_user_session_path, alert: "You must be signed in to go further." if !(user_signed_in?)
     @start_date = params[:start_date]
     @end_date = params[:end_date]
     @kitten_coordinates = { lat: @kitten.latitude, lng: @kitten.longitude }
@@ -27,6 +28,7 @@ class KittensController < ApplicationController
   end
 
   def new
+    redirect_to new_user_session_path, alert: "You must be signed in to go further." if !(user_signed_in?)
     @kitten = Kitten.new
   end
 
