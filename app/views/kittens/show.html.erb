@@ -53,7 +53,7 @@
     </div>
     <% if !(current_user.kittens.include?(@kitten)) %>
       <div class="col-xs-12 col-md-3 col-ms-offset-1">
-        <div class="card-show-kitten">
+        <div class="card-booking-kitten">
           <%= simple_form_for [@kitten, @booking] do |f| %>
           <%= f.error_notification %>
 
