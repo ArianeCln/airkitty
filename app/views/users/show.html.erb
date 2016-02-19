@@ -58,70 +58,165 @@
       <div class="col-sm-6">
         <div class="panel panel-default" id="bookings">
           <div class="panel-heading">
-            <h3 class="panel-title">My bookings</h3>
+            <h3 class="panel-title">Bookings</h3>
           </div>
           <div class="panel-body">
-            <% current_user.bookings.each do |booking| %>
-              <div class="flexbox pink-border-btm">
-                <div class="flex-item">
-                  <% if booking.kitten.photos? %>
-                    <%= cl_image_tag booking.kitten.photos.first.path, height: 64, width: 64, crop: :fill %>
-                  <% end %>
-                </div>
-                <div class="flex-item-grow">
-                  <div class="dashboard-booking-infos">
-                    <ul class="list-unstyled">
-                      <li>
-                        <strong><%= booking.kitten.name %></strong>
-                      </li>
-                      <li class="small">
-                        starts on: <%= booking.start_date.strftime("%Y/%m/%d") %>
-                      </li>
-                      <li class="small">
-                        ends on: <%= booking.end_date.strftime("%Y/%m/%d") %>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
 
-              <% if current_user == booking.kitten.owner %>
-                <% if booking.accepted.nil? %>
-                    <div class="flex-item">
-                      <%= simple_form_for booking do |f| %>
-                        <%= f.input :accepted, as: :hidden, input_html: {value: true} %>
-                        <%= f.submit "Accept", class: "link" %>
-                      <% end %>
+          <div class="bookings-title">
+            <h3>My bookings</h3>
+  <!-- est-ce que le current_user deja booke des chats ? -->
+    <!-- si non : -->
+            <% if current_user.bookings.empty? %>
+              <div class="no-kitten">
+                <p>You haven't made any booking yet.</p>
+              </div>
+    <!-- si oui : -->
+            <% else %>
+              <% current_user.bookings.each do |booking| %>
+                <div class="flexbox pink-border-btm">
+                  <div class="flex-item">
+                    <% if booking.kitten.photos? %>
+                      <%= cl_image_tag booking.kitten.photos.first.path, height: 64, width: 64, crop: :fill %>
+                    <% end %>
+                  </div>
+                  <div class="flex-item-grow">
+                    <div class="dashboard-booking-infos">
+                      <ul class="list-unstyled">
+                        <li>
+                          <strong><%= booking.kitten.name %></strong>
+                        </li>
+                        <li class="small">
+                          starts on: <%= booking.start_date.strftime("%Y/%m/%d") %>
+                        </li>
+                        <li class="small">
+                          ends on: <%= booking.end_date.strftime("%Y/%m/%d") %>
+                        </li>
+                      </ul>
                     </div>
-                    <div class="flex-item">
-                      <%= simple_form_for booking do |f| %>
-                        <%= f.input :accepted, as: :hidden, input_html: {value: false} %>
-                        <%= f.submit "Decline", class: "link" %>
-                      <% end %>
-                    </div>
-                  <% else %>
-                    <div class="flex-item">
-                      <p>Status : <%= booking.accepted ? "accepted" : "declined" %></p>
-                    </div>
+                  </div>
+                <% if current_user == booking.kitten.owner %>
+                  <% if booking.accepted.nil? %>
+                      <div class="flex-item">
+                        <%= simple_form_for booking do |f| %>
+                          <%= f.input :accepted, as: :hidden, input_html: {value: true} %>
+                          <%= f.submit "Accept", class: "link" %>
+                        <% end %>
+                      </div>
+                      <div class="flex-item">
+                        <%= simple_form_for booking do |f| %>
+                          <%= f.input :accepted, as: :hidden, input_html: {value: false} %>
+                          <%= f.submit "Decline", class: "link" %>
+                        <% end %>
+                      </div>
+                    <% else %>
+                      <div class="flex-item">
+                        <p>Status : <%= booking.accepted ? "accepted" : "declined" %></p>
+                      </div>
+                  <% end %>
+                <% else %>
+                  <% if booking.accepted %>
+                      <div class="flex-item">
+                      <p>Accepted</p>
+                      </div>
+                    <% elsif booking.accepted == false %>
+                      <div class="flex-item">
+                      <p>Declined</p>
+                      </div>
+                    <% else  %>
+                      <div class="flex-item">
+                      <p> Pending request</p>
+                      </div>
+                  <% end %>
                 <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+
+
+          <div class="bookings-title">
+            <h3>My kittens bookings</h3>
+  <!-- est-ce que le current_user possede des chats ? -->
+    <!-- si non : -->
+            <% if current_user.kittens.empty? %>
+              <div class="no-kitten">
+                <p>You don't have any registered kitten yet.</p>
+              </div>
+    <!-- si oui : -->
+            <% else %>
+              <% user_kittens_bookings = [] %>
+              <% current_user.kittens.each {|kitten| user_kittens_bookings << kitten.bookings } %>
+              <% user_kittens_bookings.flatten! %>
+      <!-- est ce que les chats ont des bookings ? -->
+        <!-- si non : -->
+              <% if user_kittens_bookings.empty? %>
+                <div class="no-kitten">
+                  <p>None of your kittens have been booked.</p>
+                </div>
+        <!-- si oui : -->
               <% else %>
-                <% if booking.accepted %>
+                <% user_kittens_bookings.each do |booking| %>
+                  <div class="flexbox pink-border-btm">
                     <div class="flex-item">
-                    <p>Accepted</p>
+                      <% if booking.kitten.photos? %>
+                        <%= cl_image_tag booking.kitten.photos.first.path, height: 64, width: 64, crop: :fill %>
+                      <% end %>
                     </div>
-                  <% elsif booking.accepted == false %>
-                    <div class="flex-item">
-                    <p>Declined</p>
+                    <div class="flex-item-grow">
+                      <div class="dashboard-booking-infos">
+                        <ul class="list-unstyled">
+                          <li>
+                            <strong><%= booking.kitten.name %></strong>
+                          </li>
+                          <li class="small">
+                            starts on: <%= booking.start_date.strftime("%Y/%m/%d") %>
+                          </li>
+                          <li class="small">
+                            ends on: <%= booking.end_date.strftime("%Y/%m/%d") %>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
-                  <% else  %>
-                    <div class="flex-item">
-                    <p> Pending request</p>
-                    </div>
+                  <% if current_user == booking.kitten.owner %>
+                    <% if booking.accepted.nil? %>
+                        <div class="flex-item">
+                          <%= simple_form_for booking do |f| %>
+                            <%= f.input :accepted, as: :hidden, input_html: {value: true} %>
+                            <%= f.submit "Accept", class: "link" %>
+                          <% end %>
+                        </div>
+                        <div class="flex-item">
+                          <%= simple_form_for booking do |f| %>
+                            <%= f.input :accepted, as: :hidden, input_html: {value: false} %>
+                            <%= f.submit "Decline", class: "link" %>
+                          <% end %>
+                        </div>
+                      <% else %>
+                        <div class="flex-item">
+                          <p>Status : <%= booking.accepted ? "accepted" : "declined" %></p>
+                        </div>
+                    <% end %>
+                  <% else %>
+                    <% if booking.accepted %>
+                        <div class="flex-item">
+                        <p>Accepted</p>
+                        </div>
+                      <% elsif booking.accepted == false %>
+                        <div class="flex-item">
+                        <p>Declined</p>
+                        </div>
+                      <% else  %>
+                        <div class="flex-item">
+                        <p> Pending request</p>
+                        </div>
+                    <% end %>
+                  <% end %>
+                  </div>
                 <% end %>
               <% end %>
-
-
-              </div>
             <% end %>
+          </div>
+
           </div>
         </div>
       </div>
