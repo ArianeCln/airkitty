@@ -85,7 +85,7 @@
                     <div class="dashboard-booking-infos">
                       <ul class="list-unstyled">
                         <li>
-                          <strong><%= link_to kitten.name, kitten_path(booking.kitten), class: "btn-kitten-name" %></strong>
+                          <strong><%= link_to booking.kitten.name, kitten_path(booking.kitten), class: "btn-kitten-name" %></strong>
                         </li>
                         <li class="small">
                           starts on: <%= booking.start_date.strftime("%Y/%m/%d") %>
